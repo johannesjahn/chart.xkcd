@@ -190,6 +190,12 @@ class XY {
       .attr('cx', (d) => xScale(d.x))
       .attr('cy', (d) => yScale(d.y))
       .attr('pointer-events', 'all')
+      .on('click', (_, i, nodes) => {
+        if (this.options.onClick) {
+          const xyGroupIndex = Number(select(nodes[i].parentElement).attr('xy-group-index'));
+          this.options.onClick(i, this.data.datasets[xyGroupIndex].label);
+        }
+      })
       .on('mouseover', (d, i, nodes) => {
         const xyGroupIndex = Number(select(nodes[i].parentElement).attr('xy-group-index'));
         select(nodes[i])
@@ -243,6 +249,7 @@ class XY {
         parentHeight: this.height,
         strokeColor: this.options.strokeColor,
         backgroundColor: this.options.backgroundColor,
+        onClick: this.options.onClick,
       });
     }
   }

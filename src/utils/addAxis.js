@@ -1,7 +1,7 @@
 import { axisBottom, axisLeft } from 'd3-axis/src/axis';
 
 const yAxis = (parent, {
-  yScale, tickCount, fontFamily, unxkcdify, stroke,
+  yScale, tickCount, fontFamily, unxkcdify, stroke, onClick,
 }) => {
   parent
     .append('g')
@@ -19,11 +19,16 @@ const yAxis = (parent, {
   parent.selectAll('.tick > text')
     .style('font-family', fontFamily)
     .style('font-size', '16')
-    .style('fill', stroke);
+    .style('fill', stroke)
+    .on('click', (d, i) => {
+      if (onClick) {
+        onClick(i, d);
+      }
+    });
 };
 
 const xAxis = (parent, {
-  xScale, tickCount, moveDown, fontFamily, unxkcdify, stroke,
+  xScale, tickCount, moveDown, fontFamily, unxkcdify, stroke, onClick,
 }) => {
   parent
     .append('g')
@@ -42,7 +47,12 @@ const xAxis = (parent, {
   parent.selectAll('.tick > text')
     .style('font-family', fontFamily)
     .style('font-size', '16')
-    .style('fill', stroke);
+    .style('fill', stroke)
+    .on('click', (d, i) => {
+      if (onClick) {
+        onClick(i, d);
+      }
+    });
 };
 
 export default {

@@ -9,17 +9,14 @@ new chartXkcd.Bar(svg, {
   xLabel: 'Month',
   yLabel: 'Count',
   data: {
-    labels: ['github stars', 'patrons'],
+    labels: ['github stars', 'patrons', 'this is sparta'],
     datasets: [{
-      data: [100, 2],
+      data: [3, 2, 5],
     }],
   },
-  // options: {
-  //   yTickCount: 2,
-  //   // unxkcdify: true,
-  //   // strokeColor: 'white',
-  //   // backgroundColor: 'black',
-  // },
+  options: {
+    onClick: (i, v) => { console.log(i, v) },
+  },
 });
 
 const svgStackedBar = document.querySelector('.stacked-bar-chart');
@@ -40,13 +37,9 @@ new chartXkcd.StackedBar(svgStackedBar, {
       data: [2, 3, 0, 1, 1],
     }],
   },
-  // options: {
-  // showLegend: true,
-  //   yTickCount: 2,
-  //   // unxkcdify: true,
-  //   // strokeColor: 'white',
-  //   // backgroundColor: 'black',
-  // },
+  options: {
+    onClick: (i, v) => { console.log(i, v) },
+  },
 });
 
 const svgPie = document.querySelector('.pie-chart');
@@ -61,10 +54,7 @@ new chartXkcd.Pie(svgPie, {
   options: {
     innerRadius: 0.6,
     legendPosition: chartXkcd.config.positionType.upRight,
-    // showLegend: true,
-    // unxkcdify: true,
-    // strokeColor: 'white',
-    // backgroundColor: 'black',
+    onClick: (i, v) => { console.log(i, v) },
   },
 });
 
@@ -87,6 +77,7 @@ new chartXkcd.Line(svgLine, {
     // unxkcdify: true,
     // strokeColor: 'black',
     // backgroundColor: 'white',
+    onClick: (i, v) => { console.log(i, v); },
   },
 });
 
@@ -113,7 +104,7 @@ new chartXkcd.XY(svgXY, {
     // unxkcdify: true,
     // strokeColor: 'blue',
     // backgroundColor: 'black',
-
+    onClick: (i, v) => { console.log(i, v); },
   },
 });
 
@@ -141,6 +132,7 @@ new chartXkcd.XY(svgXY2, {
     // unxkcdify: true,
     // strokeColor: 'white',
     // backgroundColor: 'black',
+    onClick: (i, v) => { console.log(i, v); },
   },
 });
 
@@ -165,6 +157,7 @@ new chartXkcd.Radar(svgRadar, {
     // unxkcdify: true,
     // strokeColor: 'white',
     // backgroundColor: 'black',
+    onClick: (i, v) => { console.log(i, v); },
   },
 });
 

@@ -1,7 +1,7 @@
 import config from '../config';
 
 export default function addLegend(parent, {
-  items, position, unxkcdify, parentWidth, parentHeight, strokeColor, backgroundColor,
+  items, position, unxkcdify, parentWidth, parentHeight, strokeColor, backgroundColor, onClick,
 }) {
   const filter = !unxkcdify ? 'url(#xkcdify)' : null;
 
@@ -11,6 +11,11 @@ export default function addLegend(parent, {
 
   items.forEach((item, i) => {
     textLayer.append('rect')
+      .on('click', () => {
+        if (onClick) {
+          onClick(i, item.text);
+        }
+      })
       .style('fill', item.color)
       .attr('width', 8)
       .attr('height', 8)
@@ -21,6 +26,11 @@ export default function addLegend(parent, {
       .attr('y', 17 + 20 * i);
 
     textLayer.append('text')
+      .on('click', () => {
+        if (onClick) {
+          onClick(i, item.text);
+        }
+      })
       .style('font-size', '15')
       .style('fill', strokeColor)
       .attr('x', 15 + 12)

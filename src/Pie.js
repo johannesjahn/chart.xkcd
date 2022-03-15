@@ -97,7 +97,11 @@ class Pie {
       .attr('stroke-width', 2)
       .attr('fill', (d, i) => this.options.dataColors[i])
       .attr('filter', this.filter)
-      // .attr("fill-opacity", 0.6)
+      .on('click', (_, i) => {
+        if (this.options.onClick) {
+          this.options.onClick(i, this.data.labels[i]);
+        }
+      })
       .on('mouseover', (d, i, nodes) => {
         select(nodes[i]).attr('fill-opacity', 0.6);
         tooltip.show();
@@ -141,6 +145,7 @@ class Pie {
         parentHeight: this.height,
         strokeColor: this.options.strokeColor,
         backgroundColor: this.options.backgroundColor,
+        onClick: this.options.onClick,
       });
     }
   }

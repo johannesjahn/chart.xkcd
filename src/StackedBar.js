@@ -111,6 +111,7 @@ class StackedBar {
       fontFamily: this.fontFamily,
       unxkcdify: this.options.unxkcdify,
       stroke: this.options.strokeColor,
+      onClick: this.options.onClick,
     });
     addAxis.yAxis(graphPart, {
       yScale,
@@ -118,6 +119,7 @@ class StackedBar {
       fontFamily: this.fontFamily,
       unxkcdify: this.options.unxkcdify,
       stroke: this.options.strokeColor,
+      onClick: this.options.onClick,
     });
 
     // Merge all the lists into a single list, and store the
@@ -154,6 +156,11 @@ class StackedBar {
       .attr('stroke-width', 3)
       .attr('rx', 2)
       .attr('filter', this.filter)
+      .on('click', (v, i) => {
+        if (this.options.onClick) {
+          this.options.onClick(i);
+        }
+      })
       .on('mouseover', () => tooltip.show())
       .on('mouseout', () => tooltip.hide())
       .on('mousemove', (d, i, nodes) => {
@@ -199,6 +206,7 @@ class StackedBar {
         parentHeight: this.height,
         strokeColor: this.options.strokeColor,
         backgroundColor: this.options.backgroundColor,
+        onClick: this.options.onClick,
       });
     }
   }

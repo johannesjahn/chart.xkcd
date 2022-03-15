@@ -233,6 +233,7 @@ class Line {
         parentHeight: this.height,
         backgroundColor: this.options.backgroundColor,
         strokeColor: this.options.strokeColor,
+        onClick: this.options.onClick,
       });
     }
   }

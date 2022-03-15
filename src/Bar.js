@@ -108,6 +108,7 @@ class Bar {
       fontFamily: this.fontFamily,
       unxkcdify: this.options.unxkcdify,
       stroke: this.options.strokeColor,
+      onClick: this.options.onClick,
     });
     addAxis.yAxis(graphPart, {
       yScale,
@@ -115,6 +116,7 @@ class Bar {
       fontFamily: this.fontFamily,
       unxkcdify: this.options.unxkcdify,
       stroke: this.options.strokeColor,
+      onClick: this.options.onClick
     });
 
     // Bars
@@ -134,6 +136,11 @@ class Bar {
       .attr('rx', 2)
       // .attr('cursor','crosshair')
       .attr('filter', this.filter)
+      .on('click', (_, i) => {
+        if (this.options.onClick) {
+          this.options.onClick(i, this.data.labels[i]);
+        }
+      })
       .on('mouseover', (d, i, nodes) => {
         select(nodes[i]).attr('fill', this.options.dataColors[i]);
         // select(nodes[i]).attr('fill', 'url(#hatch00)');
